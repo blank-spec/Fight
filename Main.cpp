@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <random>
 #include <vector>
 #include <thread>
@@ -42,6 +42,11 @@ public:
 		if (currentHarn >= health) {
 			health = 0;
 		}
+
+		if (currentHarn < 0) {
+			currentHarn = 0;
+		}
+
 		else {
 			health -= currentHarn;
 		}
@@ -60,7 +65,7 @@ public:
 		Fighter(health, damage, armor) {}
 
 	void showInfo() const override {
-		cout << "Wildman has " << getHealth() << " health and " << getDamage() << " damage" << endl;
+		cout << "Widlman has " << getHealth() << " health and " << getDamage() << " damage" << endl;
 	}
 };
 
@@ -78,7 +83,7 @@ void fight(shared_ptr<Fighter> wildman, shared_ptr<Fighter> warrior, vector<stri
 	while (wildman->getHealth() > 0 && warrior->getHealth() > 0) {
 		int number = rg.getNumber();
 
-		if (number <= 50) { //You can change the chance
+		if (number <= 50) {
 			warrior->Damage(wildman->getDamage());
 		}
 		else {
@@ -99,9 +104,6 @@ void fight(shared_ptr<Fighter> wildman, shared_ptr<Fighter> warrior, vector<stri
 }
 
 int main() {
-	shared_ptr<Fighter> wildman = make_shared<Wildman>(100, 30, 30); // You can change the characteristics
-	shared_ptr<Fighter> warrior = make_shared<Warrior>(200, 20, 10);
-
 	vector<string> results;
 	vector<thread> threads;
 	mutex mtx;
@@ -109,6 +111,8 @@ int main() {
 
 	unsigned int countThreads = thread::hardware_concurrency();
 	for (int i = 0; i < countThreads; ++i) {
+		shared_ptr<Fighter> wildman = make_shared<Wildman>(100, 30, 30); // You can change the characteristics
+		shared_ptr<Fighter> warrior = make_shared<Warrior>(200, 20, 10);
 		threads.emplace_back(fight, wildman, warrior, ref(results), ref(mtx), ref(rg));
 	}
 
