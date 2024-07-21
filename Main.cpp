@@ -39,18 +39,16 @@ public:
 	void Damage(int harm) {
 		lock_guard<mutex> guard(mtx);
 		int currentHarn = harm - armor;
+		
 		if (currentHarn >= health) {
 			health = 0;
 		}
-
 		if (currentHarn < 0) {
 			currentHarn = 0;
 		}
-
 		else {
 			health -= currentHarn;
-		}
-		
+		}		
 		if (health < 0) {
 			health = 0;
 		}
