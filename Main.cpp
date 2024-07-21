@@ -63,7 +63,7 @@ public:
 		Fighter(health, damage, armor) {}
 
 	void showInfo() const override {
-		cout << "Widlman has " << getHealth() << " health and " << getDamage() << " damage" << endl;
+		cout << "Wildman has " << getHealth() << " health and " << getDamage() << " damage" << endl;
 	}
 };
 
