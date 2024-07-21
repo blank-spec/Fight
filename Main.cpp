@@ -78,7 +78,7 @@ void fight(shared_ptr<Fighter> wildman, shared_ptr<Fighter> warrior, vector<stri
 	while (wildman->getHealth() > 0 && warrior->getHealth() > 0) {
 		int number = rg.getNumber();
 
-		if (number <= 50) {
+		if (number <= 50) { //You can change the chance
 			warrior->Damage(wildman->getDamage());
 		}
 		else {
@@ -99,7 +99,7 @@ void fight(shared_ptr<Fighter> wildman, shared_ptr<Fighter> warrior, vector<stri
 }
 
 int main() {
-	shared_ptr<Fighter> wildman = make_shared<Wildman>(100, 30, 30);
+	shared_ptr<Fighter> wildman = make_shared<Wildman>(100, 30, 30); // You can changeе the characteristics
 	shared_ptr<Fighter> warrior = make_shared<Warrior>(200, 20, 10);
 
 	vector<string> results;
