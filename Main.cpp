@@ -102,6 +102,9 @@ void fight(shared_ptr<Fighter> wildman, shared_ptr<Fighter> warrior, vector<stri
 }
 
 int main() {
+	shared_ptr<Fighter> wildman = make_shared<Wildman>(100, 30, 30); // You can change the characteristics
+	shared_ptr<Fighter> warrior = make_shared<Warrior>(200, 20, 10);
+	
 	vector<string> results;
 	vector<thread> threads;
 	mutex mtx;
@@ -109,8 +112,6 @@ int main() {
 
 	unsigned int countThreads = thread::hardware_concurrency();
 	for (int i = 0; i < countThreads; ++i) {
-		shared_ptr<Fighter> wildman = make_shared<Wildman>(100, 30, 30); // You can change the characteristics
-		shared_ptr<Fighter> warrior = make_shared<Warrior>(200, 20, 10);
 		threads.emplace_back(fight, wildman, warrior, ref(results), ref(mtx), ref(rg));
 	}
 
