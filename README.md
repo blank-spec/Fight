@@ -5,7 +5,7 @@ This is a simple C++ fight simulation
 ## Technologies
 This project utilizes the following technologies and concepts:
 - Object-Oriented Programming (OOP)
-- Thread
+- Multithreading
 - Smart pointers
 - Generate random numbers
 
