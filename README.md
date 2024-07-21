@@ -1,0 +1,2 @@
+# Fight
+Simple fight sumulation
